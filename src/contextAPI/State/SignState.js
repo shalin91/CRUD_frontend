@@ -5,7 +5,8 @@ import React from "react";
 export const SignState = (props) => {
   // const url = `${process.env.REACT_APP_BASE_URL}`;
   // console.log(url)
-  const url = `http://localhost:5005`;
+  // const url = `http://localhost:5005`;
+  const url = `https://hungry-dove-dress.cyclic.app`;
 
   // create user
   const addUser = async (UserData) => {
