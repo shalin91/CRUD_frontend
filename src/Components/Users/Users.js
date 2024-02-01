@@ -14,7 +14,7 @@ const Users = () => {
     name: '',
     email: '',
     password: '',
-    isActive: false,
+    isActive: true,
     });
     
 
@@ -49,11 +49,11 @@ const Users = () => {
         try {
           setSelectedUser(user);
       
-          // Fetch the user details based on the ID
+          
           const userDetails = await GetUserById(user._id);
       
           if (userDetails.success) {
-            // Populate newUser state with the user's information
+            
             setNewUser({
               name: userDetails.data.name,
               email: userDetails.data.email,
@@ -76,13 +76,13 @@ const Users = () => {
           const res = await EditUser(SelectedUser._id , newUser);
       
           if (res.success) {
-            // Close the modal
+            
             setShowEditModal(false);
       
-            // Optionally, you can reset the selected user state
+      
             setSelectedUser(null);
       
-            // Fetch the updated list of users
+       
             getusers();
           } else {
             console.error('Error editing user:', res.message);
