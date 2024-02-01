@@ -3,10 +3,9 @@ import SignContext from "../Context/SignContext";
 import React from "react";
 
 export const SignState = (props) => {
-  // const url = `${process.env.REACT_APP_BASE_URL}`;
-  // console.log(url)
+  
   const url = `http://localhost:5005`;
-  // const url = `https://hungry-dove-dress.cyclic.app`;
+  
 
   // create user
   const addUser = async (UserData) => {
@@ -70,6 +69,123 @@ export const SignState = (props) => {
     }
   };
 
+  const addProject = async (ProjectData) => {
+    try {
+      const response = await axios.post(
+        `${url}/project/addproject`,
+        ProjectData
+      );
+      return response.data;
+    } catch (error) {
+      return { success: false, msg: "server Error" };
+    }
+  };
+
+  const GetallProjects = async () => {
+    try {
+      const response = await axios.get(
+        `${url}/project/getprojects`,
+        {}
+      );
+      return response.data;
+    } catch (error) {
+      return { success: false, msg: "server Error" };
+    }
+  };
+
+  const GetProjectById = async (id) => {
+    try {
+      const response = await axios.get(
+        `${url}/project/getproject/${id}`,
+        {}
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error during API call:", error);
+    }
+  };
+
+  const EditProject = async (id, userData) => {
+    try {
+      const response = await axios.post(
+        `${url}/project/editproject/${id}`,
+        userData
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error during API call:", error);
+    }
+  };
+
+  const deleteProject = async (id) => {
+    try {
+      const response = await axios.post(
+        `${url}/project/deleteproject/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      return { success: false, msg: "server Error" };
+    }
+  };
+
+  const addTask = async (TaskData) => {
+    try {
+      const response = await axios.post(
+        `${url}/task/addtask`,
+        TaskData
+      );
+      return response.data;
+    } catch (error) {
+      return { success: false, msg: "server Error" };
+    }
+  };
+
+  const GetallTasks = async () => {
+    try {
+      const response = await axios.get(
+        `${url}/task/gettasks`,
+        {}
+      );
+      return response.data;
+    } catch (error) {
+      return { success: false, msg: "server Error" };
+    }
+  };
+
+  const GetTaskById = async (id) => {
+    try {
+      const response = await axios.get(
+        `${url}/task/gettask/${id}`,
+        {}
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error during API call:", error);
+    }
+  };
+
+  const EditTask = async (id, userData) => {
+    try {
+      const response = await axios.post(
+        `${url}/task/edittask/${id}`,
+        userData
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error during API call:", error);
+    }
+  };
+
+  const deleteTask = async (id) => {
+    try {
+      const response = await axios.post(
+        `${url}/task/deletetask/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      return { success: false, msg: "server Error" };
+    }
+  };
 
 
 
@@ -82,6 +198,16 @@ export const SignState = (props) => {
         GetUserById,
         EditUser,
         deleteUser,
+        addProject,
+        GetallProjects,
+        GetProjectById,
+        EditProject,
+        deleteProject,
+        addTask,
+        GetTaskById,
+        GetallTasks,
+        EditTask,
+        deleteTask,
       }}
     >
       {props.children}
